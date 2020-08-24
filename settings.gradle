@@ -1,0 +1,6 @@
+rootProject.name = 'spring-kafka-protobuf-example'
+include 'person-proto'
+include 'protobuf-serde'
+include 'person-producer'
+include 'person-consumer'
+

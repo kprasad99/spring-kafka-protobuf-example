@@ -1,0 +1,4 @@
+
+bootRun {
+    systemProperties = System.properties
+}

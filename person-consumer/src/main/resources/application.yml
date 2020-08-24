@@ -1,0 +1,13 @@
+server.port: 8181
+spring:
+  application:
+    name: kafka-consumer-example
+  kafka:
+    bootstrap-servers:
+    - localhost:19092
+    - localhost:29092
+    - localhost:39092
+    consumer:
+      group-id: kp-grp-1
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer

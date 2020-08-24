@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: kafka-producer-example
+  kafka:
+    bootstrap-servers:
+    - localhost:19092
+    - localhost:29092
+    - localhost:39092
+    producer:
+      acks: 1
+      batch-size: 20
+      retries: 3
+      client-id: kp-app-1
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer

@@ -1,0 +1,36 @@
+
+plugins {
+    id "com.google.protobuf" version "${protobufPluginVersion}"
+    id 'java-library'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs += ["${projectDir}/build/generated/source/proto/main/java"]
+        }
+        resources {
+            srcDirs += ["${projectDir}/src/main/proto"]
+        }
+    }
+}
+
+dependencies {
+    implementation 'javax.annotation:javax.annotation-api:1.3.2'
+    implementation "com.google.protobuf:protobuf-java:${protobufJava}"
+    implementation "com.google.protobuf:protobuf-java-util:${protobufJava}"
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:${protobufJava}"
+    }
+}
+
+jar {
+    enabled = true
+}
+
+bootJar {
+    enabled = false
+}
