@@ -1,4 +1,9 @@
 
+dependencies {
+    implementation project(':person-proto')
+    implementation project(':protobuf-serde')
+}
+
 bootRun {
     systemProperties = System.properties
 }

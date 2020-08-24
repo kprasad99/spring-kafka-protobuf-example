@@ -11,5 +11,5 @@ spring:
       batch-size: 20
       retries: 3
       client-id: kp-app-1
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      key-serializer: org.apache.kafka.common.serialization.IntegerSerializer
+      value-serializer: io.github.kprasad99.kafka.serde.KafkaProtobufSerializer

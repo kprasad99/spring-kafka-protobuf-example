@@ -9,5 +9,5 @@ spring:
     - localhost:39092
     consumer:
       group-id: kp-grp-1
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      key-deserializer: org.apache.kafka.common.serialization.IntegerDeserializer
+      value-deserializer: io.github.kprasad99.kafka.serde.KafkaProtobufDeserializer

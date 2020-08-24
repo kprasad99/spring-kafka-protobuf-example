@@ -1,29 +1,42 @@
 package io.github.kprasad99.kafka.endpoint;
 
+import java.util.function.Function;
+
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import lombok.AllArgsConstructor;
+import io.github.kprasad99.kafka.model.Person;
+import io.github.kprasad99.person.proto.PersonProto;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
 @RestController
 @Slf4j
 @RequestMapping("/api")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class PublisherEndpoint {
 
-    private final KafkaTemplate<String, String> template;
+    private final KafkaTemplate<Integer, PersonProto.Person> template;
+    @lombok.NonNull
+    private ModelMapper mapper;
 
-    @GetMapping("/send")
-    public Mono<Void> send(@NotBlank @RequestParam("key") String key, @NotBlank @RequestParam("data") String data) {
+    @PostMapping("/send/{id}")
+    public Mono<Void> send(@NotBlank @PathVariable("id") int id, @Valid @RequestBody Person person) {
 
-        log.info("Sending message {} to kafka", data);
-        return Mono.create(sink -> template.send("kp.prod1", key, data).addCallback(ok -> sink.success(), sink::error));
+        io.github.kprasad99.person.proto.PersonProto.Person proto = toProto.apply(person).build();
+        log.info("Sending message {} to kafka", proto);
+        return Mono.create(sink -> template.send("kp.prod1", id, proto).addCallback(ok -> sink.success(), sink::error));
     }
+
+    private Function<Person, PersonProto.Person.Builder> toProto = p -> mapper.map(p, PersonProto.Person.Builder.class);
+
 }

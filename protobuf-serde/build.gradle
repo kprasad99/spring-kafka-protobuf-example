@@ -3,3 +3,11 @@ dependencies {
     implementation 'org.springframework.kafka:spring-kafka'
     implementation "com.google.protobuf:protobuf-java:${protobufJava}"
 }
+
+jar {
+    enabled = true
+}
+
+bootJar {
+    enabled = false
+}

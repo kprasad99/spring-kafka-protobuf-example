@@ -43,6 +43,8 @@ subprojects {
             implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
             implementation 'org.springframework.kafka:spring-kafka'
 
+            implementation "org.modelmapper:modelmapper:${modelMapperVersion}"
+
             developmentOnly 'org.springframework.boot:spring-boot-devtools'
             annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
             testImplementation('org.springframework.boot:spring-boot-starter-test') {
@@ -63,4 +65,8 @@ subprojects {
         useJUnitPlatform()
     }
 
+}
+
+bootJar {
+    enabled = false
 }

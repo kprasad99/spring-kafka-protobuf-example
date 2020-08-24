@@ -16,9 +16,9 @@ sourceSets {
 }
 
 dependencies {
-    implementation 'javax.annotation:javax.annotation-api:1.3.2'
-    implementation "com.google.protobuf:protobuf-java:${protobufJava}"
-    implementation "com.google.protobuf:protobuf-java-util:${protobufJava}"
+    api 'javax.annotation:javax.annotation-api:1.3.2'
+    api "com.google.protobuf:protobuf-java:${protobufJava}"
+    api "com.google.protobuf:protobuf-java-util:${protobufJava}"
 }
 
 protobuf {

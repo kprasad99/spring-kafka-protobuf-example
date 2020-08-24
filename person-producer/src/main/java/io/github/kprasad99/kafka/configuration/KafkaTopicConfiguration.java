@@ -7,6 +7,8 @@ import org.springframework.kafka.core.KafkaAdmin;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 
+import io.github.kprasad99.person.proto.PersonProto;
+
 @Configuration
 public class KafkaTopicConfiguration {
 
@@ -16,7 +18,7 @@ public class KafkaTopicConfiguration {
     }
 
     @Bean
-    public KafkaTemplate<String, String> kafkaTemplate(ProducerFactory<String, String> factory){
+    public KafkaTemplate<Integer, PersonProto.Person> kafkaTemplate(ProducerFactory<Integer, PersonProto.Person> factory){
         return new KafkaTemplate<>(factory);
     }
 

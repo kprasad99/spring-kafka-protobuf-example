@@ -1,0 +1,37 @@
+== Spring Kafka with Protobuf Example
+Spring Kafka with Protobuf example using KafkaTemplate.
+
+NOTE: Doesn't use `spring-cloud-bus` or `spring-cloud-streams`
+
+=== How to run
+
+* Start a `kafka` server
+
+* Goto `application.yml` of project `person-producer` and `person-consumer` and
+update `bootstrap-servers` field with kafka servers details.
+* Run `person-producer` app.
++
+----
+$ ./gradlew -Dserver.port=8080 :person-producer:bootRun
+----
+* Run `person-consumer` app.
++
+----
+$ ./gradlew -Dserver.port=8080 :person-consumer:bootRun
+----
+
+* Execute `curl` command and send data to `producer` app.
++
+----
+curl --location --request POST 'http://localhost:8080/api/send/2' \
+--header 'x-auth-token: 3d71fb35-76f6-4a35-82e1-769509eac2da' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "id": 2,
+    "firstName": "Karthik",
+    "lastName": "ad",
+    "age": 33
+}'
+----
+
+* In consumer app log, we should be able to see the data.
