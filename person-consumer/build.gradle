@@ -2,6 +2,7 @@
 dependencies {
     implementation project(':person-proto')
     implementation project(':protobuf-serde')
+    testImplementation 'org.awaitility:awaitility'
 }
 
 
